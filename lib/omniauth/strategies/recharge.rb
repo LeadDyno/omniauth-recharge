@@ -4,11 +4,12 @@ module OmniAuth
   module Strategies
     class Recharge < OmniAuth::Strategies::OAuth2
 
+      option :provider_ignores_state, true
+
       option :client_options, {
           :site          => 'https://shopifysubscriptions.com',
           :authorize_url => '/oauth/authorize',
-          :token_url     => '/oauth/token',
-          :provider_ignores_state => true
+          :token_url     => '/oauth/token'
       }
 
       uid{ raw_info['store']['store_id'] }
