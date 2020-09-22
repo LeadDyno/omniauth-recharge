@@ -29,6 +29,12 @@ module OmniAuth
       def raw_info
         @raw_info ||= access_token.get('https://api.rechargeapps.com/').parsed
       end
+
+      # recharge doesnt like it when the query params are also passed because it breaks redirect url matching
+      def callback_url
+        full_host + script_name + callback_path
+      end
+
     end
   end
 end
